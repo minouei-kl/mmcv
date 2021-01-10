@@ -394,8 +394,13 @@ class CyclicLrUpdaterHook(LrUpdaterHook):
             curr_iter %= max_iter_per_phase
             if start_iter <= curr_iter < end_iter:
                 progress = curr_iter - start_iter
+                if start_iter==0:
+                    end_ratio=end_ratio * self.gamma**runner.epoch
+                else:
+                    start_ratio=start_ratio * self.gamma**runner.epoch
+
                 return annealing_cos(base_lr * start_ratio,
-                                     base_lr * end_ratio * self.gamma**runner.epoch,
+                                     base_lr * end_ratio ,
                                      progress / (end_iter - start_iter))
 
 
