@@ -349,7 +349,7 @@ class CyclicLrUpdaterHook(LrUpdaterHook):
                  target_ratio=(10, 1e-4),
                  cyclic_times=1,
                  step_ratio_up=0.4,
-                 gamma=0.1,
+                 gamma=0.8,
                  **kwargs):
         if isinstance(target_ratio, float):
             target_ratio = (target_ratio, target_ratio / 1e5)
